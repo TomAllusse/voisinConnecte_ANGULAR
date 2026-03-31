@@ -1,0 +1,30 @@
+<section class="annonces">
+
+  <h1>Liste des annonces</h1>
+
+  <div class="grid">
+    @for (annonce of annonces; track annonce.id) {
+    <div class="card">
+      <div class="badge" [style.background-color]="annonce.couleurCategorie"></div>
+
+      <div class="tarif">
+        {{ annonce.tarif ? annonce.tarif : 'Gratuit' }}
+      </div>
+
+      <h3>{{ annonce.titre }}</h3>
+
+      <p>{{ annonce.description }}</p>
+
+      <div class="footer">
+        <span>{{ annonce.auteur }}</span>
+        <button>Répondre</button>
+      </div>
+    </div>
+  }
+  </div>
+
+  @if (annonces.length === 0) {
+    <div class="loader">Chargement...</div>
+  }
+
+</section>
