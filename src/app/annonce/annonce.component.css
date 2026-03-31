@@ -1,15 +1,28 @@
 :host {
   display: block;
-  background: #0f0f1a;
-  color: white;
+  background-color: #101728;
   min-height: 100vh;
   padding: 40px 80px;
 }
 
-/* TITRE */
-h1 {
+/* FILTER */
+.btn-filter{
+  width: 100%;
+  margin: 50px auto;
   text-align: center;
-  margin-bottom: 40px;
+}
+
+.btn-filter h1{
+  font-size: 4rem;
+  margin: 0 auto 50px auto;
+  text-align: center;
+}
+
+.btn-filter div{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  gap: 100px;
 }
 
 /* GRID */
@@ -35,11 +48,22 @@ h1 {
 
 /* BADGE */
 .badge {
-  width: 80px;
-  height: 10px;
+  width: 200px;
+  height: 35px;
+  margin: 5px;
   background: limegreen;
   border-radius: 10px;
-  margin-bottom: 10px;
+  text-align: center;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+}
+
+.badge span {
+  width: 100%;
+  color: #0f1819;
+  font-size: 1.15rem;
+  font-weight: bold;
 }
 
 /* TARIF */
@@ -48,32 +72,47 @@ h1 {
   right: 20px;
   top: 20px;
   font-weight: bold;
+  margin: 5px;
+  color: #ccc;
 }
 
 /* TEXTE */
 .card h3 {
-  margin: 15px 0 10px;
+  font-size: 2.25rem;
+  margin: 15px auto;
+  text-align: center;
 }
 
 .card p {
   color: #ddd;
-  font-size: 14px;
+  font-size: 1.25rem;
+  text-align: justify;
+  margin: 50px;
+  height: 150px;
+  font-style: italic;
 }
 
-/* FOOTER */
-.footer {
+.bottom-card {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 20px;
+  margin: 25px;
 }
 
 button {
   padding: 8px 20px;
   border-radius: 20px;
-  border: 2px solid black;
+  border: 1px solid black;
   background: white;
   cursor: pointer;
+}
+
+.bottom-card button {
+  background: rgb(255, 255, 255, 0.75);
+}
+
+button:hover {
+  background: rgb(255, 255, 255, 0.5) !important;
 }
 
 /* LOADER */

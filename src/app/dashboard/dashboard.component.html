@@ -1,0 +1,76 @@
+<div class="dashboard">
+  <h1>Tableau de bord</h1>
+
+  <div class="colonnes">
+
+    <!-- EN ATTENTE -->
+    <div class="colonne">
+      <h2 class="titre-colonne attente">En attente</h2>
+
+      @for (annonce of annonceAttente; track annonce.id) {
+        <div class="carte">
+          <div class="carte-header">
+            <span class="badge categorie" [style.background-color]="annonce.couleurCategorie">{{ annonce.categorie }}</span>
+            <span class="tarif">{{ annonce.tarif ? annonce.tarif + '€' : 'Gratuit' }}</span>
+          </div>
+          <h3>{{ annonce.titre }}</h3>
+          <p>{{ annonce.description }}</p>
+          <span class="auteur">{{ annonce.auteur }}</span>
+        </div>
+      }
+
+      @if (annonceAttente.length === 0) {
+        <p class="vide">Aucune annonce</p>
+      }
+
+      <button class="btn-add">+</button>
+    </div>
+
+    <!-- EN COURS -->
+    <div class="colonne">
+      <h2 class="titre-colonne en-cours">En cours</h2>
+
+      @for (annonce of annonceEnCours; track annonce.id) {
+        <div class="carte">
+          <div class="carte-header">
+            <span class="badge categorie" [style.background-color]="annonce.couleurCategorie">{{ annonce.categorie }}</span>
+            <span class="tarif">{{ annonce.tarif ? annonce.tarif + '€' : 'Gratuit' }}</span>
+          </div>
+          <h3>{{ annonce.titre }}</h3>
+          <p>{{ annonce.description }}</p>
+          <span class="auteur">{{ annonce.auteur }}</span>
+        </div>
+      }
+
+      @if (annonceEnCours.length === 0) {
+        <p class="vide">Aucune annonce</p>
+      }
+
+      <button class="btn-add">+</button>
+    </div>
+
+    <!-- TERMINÉS -->
+    <div class="colonne">
+      <h2 class="titre-colonne termine">Terminés</h2>
+
+      @for (annonce of annonceTermine; track annonce.id) {
+        <div class="carte">
+          <div class="carte-header">
+            <span class="badge categorie" [style.background-color]="annonce.couleurCategorie">{{ annonce.categorie }}</span>
+            <span class="tarif">{{ annonce.tarif ? annonce.tarif + '€' : 'Gratuit' }}</span>
+          </div>
+          <h3>{{ annonce.titre }}</h3>
+          <p>{{ annonce.description }}</p>
+          <span class="auteur">{{ annonce.auteur }}</span>
+        </div>
+      }
+
+      @if (annonceTermine.length === 0) {
+        <p class="vide">Aucune annonce</p>
+      }
+
+      <button class="btn-add">+</button>
+    </div>
+
+  </div>
+</div>

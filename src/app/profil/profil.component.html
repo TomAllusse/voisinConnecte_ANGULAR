@@ -1,0 +1,71 @@
+<div class="profil-page">
+
+  <!-- CARTE GAUCHE -->
+  <div class="carte-profil">
+    <div class="avatar">
+      <img src="https://api.dicebear.com/7.x/adventurer/svg?seed=Adam" alt="Avatar" />
+    </div>
+    <h3>{{ nomAffiche }}</h3>
+    <p class="lieu">{{ lieuHabitation }}</p>
+
+    <div class="stats">
+      <div class="stat">
+        <span class="stat-nombre">{{ stats.annonces }}</span>
+        <span class="stat-label">Annonces créée</span>
+      </div>
+      <div class="stat">
+        <span class="stat-nombre">{{ stats.services }}</span>
+        <span class="stat-label">Services rendus</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- FORMULAIRE DROITE -->
+  <div class="carte-form">
+    <h2>Informations personnelles</h2>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Prénom</label>
+        <input type="text" [(ngModel)]="profil.prenom" placeholder="Prénom" />
+      </div>
+      <div class="form-group">
+        <label>Nom</label>
+        <input type="text" [(ngModel)]="profil.nom" placeholder="Nom" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" [(ngModel)]="profil.email" placeholder="Email" />
+    </div>
+
+    <div class="form-group">
+      <label>Ville</label>
+      <input type="text" [(ngModel)]="profil.ville" placeholder="Ville" />
+    </div>
+
+    <div class="form-group">
+      <label>Description</label>
+      <textarea [(ngModel)]="profil.description" placeholder="Description" rows="4"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>Ancien mot de passe</label>
+      <input type="password" [(ngModel)]="profil.ancienMotDePasse" placeholder="Ancien mot de passe" />
+    </div>
+
+    <div class="form-group">
+      <label>Nouveau mot de passe</label>
+      <input type="password" [(ngModel)]="profil.nouveauMotDePasse" placeholder="Nouveau mot de passe" />
+    </div>
+
+    <div class="form-group">
+      <label>Confirmer mot de passe</label>
+      <input type="password" [(ngModel)]="profil.confirmMotDePasse" placeholder="Nouveau mot de passe" />
+    </div>
+
+    <button class="btn-save" (click)="sauvegarder()">Sauvegarder les modifications</button>
+  </div>
+
+</div>
