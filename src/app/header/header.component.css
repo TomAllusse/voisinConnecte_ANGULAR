@@ -1,0 +1,102 @@
+:host {
+  display: block;
+  background-color: #101728;
+}
+
+nav {
+    display: block;
+    width: 100%;
+    font-size: x-large;
+}
+
+.navbar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar-nav {
+    display: inline-flex;
+    list-style: none;
+}
+
+.logo-gsb{
+    padding: 15px;
+}
+
+.nav-item{
+    margin: auto 10px;
+}
+
+li {
+    display: list-item;
+}
+
+a{
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bolder;
+    padding: 10px 50px;
+}
+
+a:hover{
+    color:red;
+    z-index: 2;
+}
+
+.login{
+    position: absolute;
+    right: 0;
+    height: 100%;
+}
+
+/*Dropdown*/
+
+.dropdown{
+    position: relative;
+    display: inline-block;
+}
+
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    min-width: 160px;
+    padding: 12px 16px;
+    z-index: 1;
+    list-style: none;
+    border-radius: 0 0 40px 40px;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+    text-decoration: none;
+    font-size: large;
+    padding: 0;
+}
+
+.dropdown-item{
+    z-index: 2;
+    margin: 20px 0;
+    width: fit-content;
+}
+
+/* Button LOGOUT */
+
+button{
+    height: 100%;
+    border: none;
+    background: none;
+    font-size: xx-large;
+    display: block;
+    color: #17283b;
+    text-decoration: none;
+    font-weight: bolder;
+    padding: 10px 50px;
+}
+
+button:hover{
+    color:red;
+}

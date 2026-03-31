@@ -1,0 +1,54 @@
+<section class="hero">
+  <div class="hero-text">
+    <h1>
+      Des voisins qui s'entraident,<br>
+      une ville qui vit mieux
+    </h1>
+    <p>
+      Échangez des services gratuitement ou contre rémunération avec vos voisins.
+      Bricolage, jardinage, soutien scolaire — tout près de chez vous.
+    </p>
+    <div class="buttons">
+      <button class="btn primary">Publier une annonce</button>
+      <button class="btn secondary">Parcourir les services</button>
+    </div>
+  </div>
+
+  <div class="hero-image">
+    <img src="/images/voisin.png" alt="Entraide voisins">
+  </div>
+</section>
+
+<hr>
+
+<section class="stats">
+  <div class="stat">
+    <h2>{{ stats.membres }}</h2>
+    <p>Membres actifs</p>
+  </div>
+  <div class="stat">
+    <h2>{{ stats.annonces }}</h2>
+    <p>Annonces</p>
+  </div>
+  <div class="stat">
+    <h2>{{ stats.termines }}</h2>
+    <p>Terminés</p>
+  </div>
+</section>
+
+<hr>
+
+<section class="categories">
+  <h2>Catégorie en tendance</h2>
+  <div class="category-grid">
+    @for (cat of categories; track cat.nom) {
+      <div class="category-card">
+        <span>{{ cat.nom }}</span>
+      </div>
+    }
+  </div>
+</section>
+
+@if (!stats || categories.length === 0) {
+  <div class="loader">Chargement...</div>
+}

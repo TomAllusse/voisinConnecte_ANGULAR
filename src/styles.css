@@ -1,1 +1,67 @@
-/* You can add global styles to this file, and also import other style files */
+*, *::before, *::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  background-color: inherit;
+}
+
+html, body {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+  'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  background-color: #101728;
+  color: white;
+  min-height: 100vh;
+}
+
+:host {
+  display: block;
+  background-color: #101728;
+}
+
+button{
+  font-size: x-large;
+  font-weight: bolder;
+  cursor: pointer;
+}
+
+button:hover{
+  color:#0ef;
+}
+
+a{
+  cursor: pointer;
+}
+
+/*tableau*/
+
+table{
+  border-collapse: collapse;
+  width: 90%;
+  margin: 50px auto;
+}
+
+.table-row{
+  display: table-row;
+}
+
+tr{
+  width: 1600px;
+}
+
+td, th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+td{
+  width: 200px;
+  height: 80px;
+  vertical-align: middle;
+}
+
+th{
+  width: 200px;
+  text-align: center;
+  color: white;
+  border-collapse: collapse;
+}
