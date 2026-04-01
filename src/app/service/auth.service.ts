@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root', // ✅ Disponible dans toute l'app, sans le déclarer dans app.config.ts
+  providedIn: 'root',
 })
 export class AuthService {
   isAuth: boolean = false;

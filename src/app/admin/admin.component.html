@@ -1,0 +1,97 @@
+<div class="admin">
+
+  <h1>PANEL ADMIN</h1>
+
+  <div class="section-title">— CE MOIS-CI —</div>
+  <div class="stats-grid">
+    <div class="stat-card">
+      <h2>{{ stats.actif }}</h2>
+      <p>Actif</p>
+    </div>
+    <div class="stat-card">
+      <h2>{{ stats.annonces }}</h2>
+      <p>Annonces</p>
+    </div>
+    <div class="stat-card">
+      <h2>{{ stats.signalements }}</h2>
+      <p>Signalement en attente</p>
+    </div>
+    <div class="stat-card">
+      <h2>{{ stats.bannis }}</h2>
+      <p>BANNI</p>
+    </div>
+  </div>
+
+  <div class="section-title">— GESTION DES UTILISATEURS —</div>
+  <div class="table-card">
+    <table>
+      <thead>
+        <tr>
+          <th>UTILISATEURS</th>
+          <th>EMAILS</th>
+          <th>ANNONCES</th>
+          <th>STATUS</th>
+          <th>ACTIONS</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (user of utilisateurs; track user.id) {
+          <tr>
+            <td>{{ user.nom }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.annonces }}</td>
+            <td>
+              <span [class]="'badge-statut ' + user.statut">
+                {{ user.statut }}
+              </span>
+            </td>
+            <td>
+              @if (user.statut !== 'banni') {
+                <button class="btn-danger" (click)="bannir(user.id)">Bannir</button>
+              } @else {
+                <span class="banni-label">Banni</span>
+              }
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+    <div class="pagination">
+      <button>‹</button>
+      <span>{{ pageUtilisateurs }}</span>
+      <button>›</button>
+    </div>
+  </div>
+
+  <div class="section-title">— ANNONCES SIGNALEES —</div>
+  <div class="table-card">
+    <table>
+      <thead>
+        <tr>
+          <th>ANNONCES</th>
+          <th>AUTEURS</th>
+          <th>MOTIFS</th>
+          <th>ACTIONS</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (annonce of annoncesSignalees; track annonce.id) {
+          <tr>
+            <td>{{ annonce.titre }}</td>
+            <td>{{ annonce.auteur }}</td>
+            <td>{{ annonce.motif }}</td>
+            <td>
+              <button class="btn-danger" (click)="supprimerAnnonce(annonce.id)">Supprimer</button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+    <div class="pagination">
+      <button>‹</button>
+      <span>{{ pageSignalements }}</span>
+      <button>›</button>
+    </div>
+  </div>
+
+</div>

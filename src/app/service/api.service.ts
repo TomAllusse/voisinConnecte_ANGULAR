@@ -35,4 +35,40 @@ export class ApiService {
       { id: 4, titre: 'Garde animaux', description: 'Garde chien', auteur: 'Sophie R.', couleurCategorie: '#f0abfc', statut: 'termine', categorie: 'Animaux' },
     ]);
   }
+
+getAdminStats(): Observable<any> {
+  return of({
+    actif: 142,
+    annonces: 87,
+    signalements: 5,
+    bannis: 3
+  });
+}
+
+
+getUtilisateurs(): Observable<any[]> {
+  return of([
+    { id: 1, nom: 'Adam Dupont', email: 'adam@mail.com', annonces: 4, statut: 'actif' },
+    { id: 2, nom: 'Marie Martin', email: 'marie@mail.com', annonces: 2, statut: 'actif' },
+    { id: 3, nom: 'Paul Robert', email: 'paul@mail.com', annonces: 1, statut: 'banni' },
+  ]);
+}
+
+
+getAnnoncesSignalees(): Observable<any[]> {
+  return of([
+    { id: 1, titre: 'Aide déménagement', auteur: 'Adam D.', motif: 'Contenu inapproprié' },
+    { id: 2, titre: 'Cours de maths', auteur: 'Paul R.', motif: 'Arnaque suspectée' },
+  ]);
+}
+
+
+bannirUtilisateur(id: number): Observable<any> {
+  return of({ success: true });
+}
+
+
+supprimerAnnonce(id: number): Observable<any> {
+  return of({ success: true });
+}
 }

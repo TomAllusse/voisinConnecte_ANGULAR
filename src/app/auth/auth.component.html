@@ -1,20 +1,70 @@
-<div class="parent">
-    <div class="container">
-        <div class="login-box">
-            <h2>Login</h2>
-            <form action="#">
-                <div class="input-box">
-                    <input type="text" [(ngModel)]="loginObj.login" name="Identifiant" required>
-                    <label>Identifiant</label>
-                </div>
-                <div class="input-box">
-                    <input type="password" [(ngModel)]="loginObj.password" name="Password" required>
-                    <label>Password</label>
-                </div>
-                
-                <button type="button" class="btn" (click)="onLogin()" >Login</button>
-                 <p>{{ this.msg }}</p>
-            </form>
+<div class="auth-page">
+
+  <div class="auth-container">
+
+    <!-- INSCRIPTION -->
+    <div class="auth-card" [class.active]="mode() === 'inscription'">
+      <h2>INSCRIPTION</h2>
+
+      @if (msg && mode() === 'inscription') {
+        <div class="msg">{{ msg }}</div>
+      }
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Prénom</label>
+          <input type="text" [(ngModel)]="registerObj.prenom" />
         </div>
+        <div class="form-group">
+          <label>Nom</label>
+          <input type="text" [(ngModel)]="registerObj.nom" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" [(ngModel)]="registerObj.email" />
+      </div>
+
+      <div class="form-group">
+        <label>Ville</label>
+        <input type="text" [(ngModel)]="registerObj.ville" />
+      </div>
+
+      <div class="form-group">
+        <label>Choisissez votre mot de passe</label>
+        <input type="password" [(ngModel)]="registerObj.password" />
+      </div>
+
+      <div class="form-group">
+        <label>Confirmer votre mot de passe</label>
+        <input type="password" [(ngModel)]="registerObj.confirmPassword" />
+      </div>
+
+      <button class="btn-submit" (click)="onRegister()">Inscription</button>
     </div>
+
+    <!-- CONNEXION -->
+    <div class="auth-card" [class.active]="mode() === 'connexion'">
+      <h2>CONNEXION</h2>
+
+      @if (msg && mode() === 'connexion') {
+        <div class="msg">{{ msg }}</div>
+      }
+
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" [(ngModel)]="loginObj.login" />
+      </div>
+
+      <div class="form-group">
+        <label>Mot de passe</label>
+        <input type="password" [(ngModel)]="loginObj.password" />
+      </div>
+
+      <button class="btn-submit" (click)="onLogin()">Connexion</button>
+    </div>
+
+  </div>
+
 </div>
