@@ -1,53 +1,64 @@
 .admin {
-  background-color: #0f0f1a;
+  background-color: #101728;
   color: white;
   min-height: 100vh;
   padding: 40px 60px;
-  font-family: Arial, sans-serif;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 h1 {
   text-align: center;
-  font-size: 2.2rem;
-  font-weight: 900;
+  font-size: 2rem;
+  font-weight: 700;
   margin-bottom: 0.5rem;
 }
 
+/* SÉPARATEUR DE SECTION */
 .section-title {
   text-align: center;
-  color: #aaa;
-  font-size: 0.85rem;
+  color: #8a9e82;
+  font-size: 0.8rem;
   letter-spacing: 2px;
   margin: 2rem 0 1.5rem;
-  border-top: 1px solid #2a2a3a;
-  border-bottom: 1px solid #2a2a3a;
+  border-top: 1px solid rgba(106, 153, 78, 0.2);
+  border-bottom: 1px solid rgba(106, 153, 78, 0.2);
   padding: 0.5rem 0;
+  text-transform: uppercase;
 }
 
+/* STATS */
 .stats-grid {
   display: flex;
   justify-content: space-around;
   text-align: center;
   margin-bottom: 1rem;
+  gap: 20px;
 }
 
 .stat-card h2 {
-  font-size: 2.5rem;
-  font-weight: 900;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--color-primary-light);
 }
 
 .stat-card p {
-  color: #aaa;
-  font-size: 0.9rem;
+  color: #8a9e82;
+  font-size: 0.85rem;
+  margin-top: 4px;
 }
 
+/* TABLE CARD */
 .table-card {
-  background: #5b21b6;
+  background: linear-gradient(145deg, #0d1f0f, #162b12);
+  border: 1px solid rgba(106, 153, 78, 0.2);
   border-radius: 16px;
   padding: 1.5rem;
   margin-bottom: 2rem;
+  box-shadow: 0 8px 24px rgba(56, 102, 65, 0.15);
 }
 
+/* TABLEAU */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -56,40 +67,67 @@ table {
 th {
   text-align: left;
   font-size: 0.75rem;
-  color: #ddd;
+  color: var(--color-primary-light);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
   padding-bottom: 0.8rem;
-  border-bottom: 1px solid rgba(255,255,255,0.2);
+  border-bottom: 1px solid rgba(106, 153, 78, 0.25);
 }
 
 td {
   padding: 0.8rem 0;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-  font-size: 0.9rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  font-size: 0.875rem;
+  color: #c8d8c0;
 }
 
+tbody tr:hover td {
+  background-color: rgba(106, 153, 78, 0.08);
+}
+
+/* BADGES STATUT */
 .badge-statut {
   padding: 3px 10px;
   border-radius: 999px;
-  font-size: 0.8rem;
+  font-size: 0.78rem;
+  font-weight: 500;
 }
 
-.badge-statut.actif { background: #4ade80; color: #000; }
-.badge-statut.banni { background: #f87171; color: #000; }
+.badge-statut.actif {
+  background: rgba(140, 179, 105, 0.15);
+  border: 1px solid rgba(140, 179, 105, 0.4);
+  color: var(--color-primary-light);
+}
 
+.badge-statut.banni {
+  background: rgba(248, 113, 113, 0.12);
+  border: 1px solid rgba(248, 113, 113, 0.35);
+  color: #f87171;
+}
+
+/* BOUTON DANGER */
 .btn-danger {
-  background: #f87171;
-  border: none;
-  color: white;
+  background: rgba(248, 113, 113, 0.12);
+  border: 1px solid rgba(248, 113, 113, 0.35);
+  color: #f87171;
   padding: 5px 12px;
   border-radius: 6px;
   cursor: pointer;
-  font-size: 0.85rem;
+  font-size: 0.82rem;
+  transition: background 0.2s, transform 0.15s;
 }
 
-.btn-danger:hover { background: #ef4444; }
+.btn-danger:hover {
+  background: rgba(248, 113, 113, 0.25);
+  transform: translateY(-1px);
+}
 
-.banni-label { color: #f87171; font-size: 0.85rem; }
+.banni-label {
+  color: #f87171;
+  font-size: 0.82rem;
+}
 
+/* PAGINATION */
 .pagination {
   display: flex;
   justify-content: center;
@@ -102,11 +140,36 @@ td {
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  border: 1px solid white;
+  border: 1px solid rgba(140, 179, 105, 0.4);
   background: transparent;
-  color: white;
+  color: var(--color-primary-light);
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 0.9rem;
+  transition: background 0.2s, transform 0.15s;
 }
 
-.pagination span { font-weight: bold; }
+.pagination button:hover {
+  background: rgba(106, 153, 78, 0.15);
+  transform: scale(1.1);
+}
+
+.pagination span {
+  font-weight: 600;
+  color: var(--color-accent);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .admin {
+    padding: 30px 20px;
+  }
+
+  .stats-grid {
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  table {
+    font-size: 0.8rem;
+  }
+}

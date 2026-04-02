@@ -7,10 +7,18 @@
 
 html, body {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
-  'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   background-color: #101728;
   color: white;
   min-height: 100vh;
+
+  /* ── Palette Prairie ensoleillée ── */
+  --color-primary:      #6a994e;
+  --color-primary-dark: #386641;
+  --color-primary-light:#8cb369;
+  --color-accent:       #c9e4a3;
+  --color-gradient-btn: linear-gradient(135deg, #386641, #6a994e);
+  --color-gradient-hero:linear-gradient(135deg, #4a7c59, #8cb369);
 }
 
 :host {
@@ -18,50 +26,77 @@ html, body {
   background-color: #101728;
 }
 
-button{
-  font-size: x-large;
-  font-weight: bolder;
+/* BOUTONS GLOBAUX */
+button {
+  font-size: 0.95rem;
+  font-weight: 500;
   cursor: pointer;
+  padding: 11px 26px;
+  border-radius: 30px;
+  border: none;
+  background: var(--color-gradient-btn);
+  color: #fff;
+  letter-spacing: 0.5px;
+  transition: opacity 0.25s, transform 0.2s;
 }
 
-button:hover{
-  color:#0ef;
+button:hover {
+  opacity: 0.85;
+  transform: translateY(-2px);
+  color: #fff;
 }
 
-a{
+a {
   cursor: pointer;
+  color: var(--color-primary-light);
+  text-decoration: none;
+  transition: color 0.2s;
 }
 
-/*tableau*/
+a:hover {
+  color: var(--color-accent);
+}
 
-table{
+/* TABLEAUX */
+table {
   border-collapse: collapse;
   width: 90%;
-  margin: 50px auto;
+  margin: 40px auto;
 }
 
-.table-row{
-  display: table-row;
+thead tr {
+  background: var(--color-gradient-btn);
 }
 
-tr{
-  width: 1600px;
-}
-
-td, th {
-  border: 1px solid #ddd;
-  padding: 8px;
-}
-
-td{
-  width: 200px;
-  height: 80px;
-  vertical-align: middle;
-}
-
-th{
+th {
   width: 200px;
   text-align: center;
-  color: white;
-  border-collapse: collapse;
+  color: #fff;
+  padding: 12px 8px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+td {
+  width: 200px;
+  height: 70px;
+  vertical-align: middle;
+  padding: 10px 8px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.9rem;
+  color: #e0e0e0;
+}
+
+tbody tr {
+  transition: background-color 0.2s;
+}
+
+tbody tr:hover {
+  background-color: rgba(106, 153, 78, 0.12);
+}
+
+tbody tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.03);
 }

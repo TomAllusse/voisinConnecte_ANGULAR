@@ -1,6 +1,6 @@
 :host {
   display: block;
-  background: #0f0f1a;
+  background: #101728;
   color: white;
   min-height: 100vh;
   padding: 40px 80px;
@@ -10,6 +10,9 @@
 h1 {
   text-align: center;
   margin-bottom: 40px;
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: 1px;
 }
 
 /* GRID */
@@ -21,24 +24,33 @@ h1 {
 
 /* CARD */
 .card {
-  background: linear-gradient(135deg, #5f2c82, #49a09d);
+  background: linear-gradient(145deg, #0d1f0f, #162b12);
+  border: 1px solid rgba(106, 153, 78, 0.2);
   border-radius: 20px;
   padding: 20px;
   position: relative;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-  transition: 0.3s;
+  box-shadow: 0 8px 24px rgba(56, 102, 65, 0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .card:hover {
   transform: translateY(-5px);
+  box-shadow: 0 14px 32px rgba(56, 102, 65, 0.35);
 }
 
-/* BADGE */
+/* BADGE CATÉGORIE */
 .badge {
-  width: 80px;
-  height: 10px;
-  background: limegreen;
-  border-radius: 10px;
+  display: inline-block;
+  height: auto;
+  width: auto;
+  padding: 3px 12px;
+  background: rgba(140, 179, 105, 0.15);
+  border: 1px solid rgba(140, 179, 105, 0.35);
+  color: var(--color-primary-light);
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
   margin-bottom: 10px;
 }
 
@@ -47,37 +59,67 @@ h1 {
   position: absolute;
   right: 20px;
   top: 20px;
-  font-weight: bold;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--color-accent);
 }
 
 /* TEXTE */
 .card h3 {
-  margin: 15px 0 10px;
+  margin: 12px 0 8px;
+  font-size: 1.05rem;
+  font-weight: 600;
 }
 
 .card p {
-  color: #ddd;
-  font-size: 14px;
+  color: #b0c4a8;
+  font-size: 0.875rem;
+  line-height: 1.5;
 }
 
-/* FOOTER */
+/* FOOTER CARD */
 .footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-top: 20px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(106, 153, 78, 0.15);
 }
 
+/* BOUTON CARTE */
 button {
   padding: 8px 20px;
   border-radius: 20px;
-  border: 2px solid black;
-  background: white;
+  border: none;
+  background: var(--color-gradient-btn);
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 500;
   cursor: pointer;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+button:hover {
+  opacity: 0.85;
+  transform: translateY(-1px);
 }
 
 /* LOADER */
 .loader {
   text-align: center;
   margin-top: 30px;
+  color: #8a9e82;
+  font-size: 0.9rem;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  :host {
+    padding: 30px 20px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
 }
