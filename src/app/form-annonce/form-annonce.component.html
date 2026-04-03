@@ -1,0 +1,128 @@
+<div class="overlay">
+  <div class="canvas">
+
+    <!-- Header -->
+    <div class="canvas-header">
+      <p class="canvas-title">Publier une annonce</p>
+    </div>
+
+    <!-- Formulaire -->
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+      <div class="canvas-body">
+
+        <!-- Titre -->
+        <div class="canvas-field">
+          <label class="canvas-label">Titre <span class="canvas-required">*</span></label>
+          <input
+            class="canvas-input"
+            [class.invalid]="isFieldInvalid('title')"
+            formControlName="title"
+            type="text"
+            placeholder="Ex : Aide au jardinage…"
+          />
+          @if (isFieldInvalid('title')) {
+            <span class="canvas-error">Titre obligatoire.</span>
+          }
+        </div>
+
+        <!-- Catégorie -->
+        <div class="canvas-field">
+          <label class="canvas-label">Catégorie <span class="canvas-required">*</span></label>
+          <select
+            class="canvas-select"
+            [class.invalid]="isFieldInvalid('id_category')"
+            formControlName="id_category"
+          >
+            <option [ngValue]="null" disabled>Choisir…</option>
+            @if (categories$ | async; as cats) {
+              @for (cat of cats; track cat.id) {
+                <option [ngValue]="cat.id">{{ cat.name }}</option>
+              } @empty {
+                <option [ngValue]="null" disabled>Aucune catégorie disponible</option>
+              }
+            } @else {
+              <option [ngValue]="null" disabled>Chargement des catégories...</option>
+            }
+          </select>
+          @if (isFieldInvalid('id_category')) {
+            <span class="canvas-error">Catégorie obligatoire.</span>
+          }
+        </div>
+
+        <!-- Description -->
+        <div class="canvas-field">
+          <label class="canvas-label">Description <span class="canvas-required">*</span></label>
+          <textarea
+            class="canvas-textarea"
+            [class.invalid]="isFieldInvalid('description')"
+            formControlName="description"
+            placeholder="Décrivez votre offre…"
+            rows="4"
+            maxlength="200"
+          ></textarea>
+          <span class="canvas-caractere" [class.text-danger]="descLength >= 190">
+            {{ descLength }} / 200
+          </span>
+          @if (isFieldInvalid('description')) {
+            <span class="canvas-error">Description obligatoire.</span>
+          }
+        </div>
+
+        <!-- Service rémunéré -->
+        <div class="canvas-field">
+          <label class="canvas-label">Service rémunéré ?</label>
+          <label class="canvas-switch">
+            <input type="checkbox" formControlName="is_paid" />
+            <span class="canvas-slider"></span>
+          </label>
+        </div>
+
+        <!-- Prix + Unité -->
+        <div class="canvas-price-block" [class.visible]="isPaid">
+          <div class="canvas-field">
+            <label class="canvas-label">Prix (€) <span class="canvas-required">*</span></label>
+            <input
+              class="canvas-input"
+              [class.invalid]="isFieldInvalid('price')"
+              formControlName="price"
+              type="number"
+              min="0"
+              step="0.01"
+              placeholder="0.00"
+            />
+            @if (isFieldInvalid('price')) {
+              <span class="canvas-error">Prix requis.</span>
+            }
+          </div>
+
+          <div class="canvas-field">
+            <label class="canvas-label">Unité <span class="canvas-required">*</span></label>
+            <select
+              class="canvas-select"
+              [class.invalid]="isFieldInvalid('price_unit')"
+              formControlName="price_unit"
+            >
+              <option [ngValue]="null" disabled>Sélectionner…</option>
+              @for (unit of priceUnits; track unit.value) {
+                <option [ngValue]="unit.value">{{ unit.label }}</option>
+              }
+            </select>
+            @if (isFieldInvalid('price_unit')) {
+              <span class="canvas-error">Unité requise.</span>
+            }
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Footer -->
+      <div class="canvas-footer">
+        <button type="button" class="canvas-btn-cancel" (click)="onReset()">Annuler</button>
+        <button type="submit" class="canvas-btn-submit" [disabled]="isSubmitting">
+          {{ isSubmitting ? 'Publication…' : 'Publier →' }}
+        </button>
+      </div>
+
+    </form>
+  </div>
+</div>

@@ -1,0 +1,64 @@
+<section class="annonces">
+
+  <div class="btn-filter">
+    <h1>Choix catégorie</h1>
+    <div class="filter-group">
+      <button class="btn-all" (click)="resetFiltres()">Toutes</button>
+      @if (categories$ | async; as cats) {
+        @for (category of cats; track category.id) {
+          <button
+            (click)="onCategoryClick(category.id)">
+            {{ category.name }}
+          </button>
+        }
+      }
+    </div>
+  </div>
+
+
+  @if (annonces$ | async; as annoncesList) {
+    @if (annoncesList.length === 0) {
+      <div class="empty-container">
+        <p>Aucune annonce trouvée dans cette section !</p>
+      </div>
+
+    } @else {
+      <div class="grid">
+      @for (annonce of annoncesList; track annonce.id) {
+        <div class="card">
+          <div class="badge" [style.background-color]="annonce.id_category.color_hex">
+            <span>{{ annonce.id_category.name }}</span>
+          </div>
+          <div class="tarif">
+            {{ annonce.price ? (annonce.price + ' €') : 'Gratuit' }}
+          </div>
+          <div class="content">
+            <h3>{{ annonce.title }}</h3>
+            <p>{{ annonce.description }}</p>
+          </div>
+          <div class="bottom-card">
+            <div class="user-info">
+              <span>
+                {{ formatUserName(annonce.id_user) }}
+              </span>
+            </div>
+            <button class="btn-respond" (click)="ouvrirFormAnnonce()">Répondre</button>
+          </div>
+        </div>
+      }
+      </div>
+    }
+  }
+
+
+  @if (canvasVisible) {
+    <div class="canvas-backdrop" (click)="fermerFormAnnonce()">
+      <div class="canvas-panel" (click)="$event.stopPropagation()">
+        <div class="canvas-header">
+          <button class="btn-close" (click)="fermerFormAnnonce()">✕</button>
+        </div>
+        <app-form-response class="canvas-form" (fermer)="fermerFormAnnonce()"></app-form-response>
+      </div>
+    </div>
+  }
+</section>

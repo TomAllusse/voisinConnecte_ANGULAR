@@ -1,0 +1,147 @@
+:host {
+  display: block;
+  background-color: #101728;
+  min-height: 100vh;
+  padding: 0 80px 40px 80px;
+}
+
+.dashboard {
+  padding: 20px;
+  color: white;
+}
+
+h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+}
+
+/* BOUTONS */
+.btn-container {
+  display: flex;
+  justify-content: center;
+  gap: 150px;
+  margin: 75px;
+}
+
+.btn {
+  padding: 12px 25px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.3s;
+  background: linear-gradient(90deg, #9340ff, #ff3c5f);
+  border: 2px solid #7b2ff7;
+  color: #fff;
+  letter-spacing: 2.5px;
+}
+
+.btn:hover {
+  opacity: 0.5;
+}
+
+
+.colonnes {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.colonne {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 400px;
+}
+
+.titre-colonne {
+  font-size: 1.75rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.titre-colonne.attente { color: white; }
+.titre-colonne.en-cours { color: #4fc3f7; }
+.titre-colonne.termine { color: #69f0ae; }
+
+.carte {
+  background: linear-gradient(135deg, #5f2c82, #49a09d);
+  border-radius: 20px;
+  margin: 25px 0;
+  padding: 20px;
+  position: relative;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+  transition: 0.3s;
+}
+
+.carte-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.carte-header .badge {
+  width: 150px;
+  height: 35px;
+  margin: 5px;
+  background: limegreen;
+  border-radius: 10px;
+  text-align: center;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+}
+
+.categorie{
+  width: 100%;
+  color: #0f1819;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.tarif {
+  font-weight: bold;
+  color: #ccc;
+}
+
+.carte h3 {
+  font-size: 1.25rem;
+  margin: 15px auto;
+  text-align: center;
+}
+
+.carte p {
+  color: #ddd;
+  font-size: 0.95rem;
+  text-align: justify;
+  margin: 25px;
+  height: 150px;
+  font-style: italic;
+}
+
+.auteur {
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.btn-add {
+  margin: 0 auto;
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  border: 3px solid #555;
+  background: transparent;
+  color: white;
+  font-size: 3rem;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.btn-add:hover {
+  border-color: white;
+  align-content: center;
+  vertical-align: center;
+}
