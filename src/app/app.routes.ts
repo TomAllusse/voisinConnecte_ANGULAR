@@ -5,39 +5,43 @@ import { AnnonceComponent } from './annonce/annonce.component';
 import { authGuard } from './service/auth.guard';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProfilComponent } from './profil/profil.component';
+import { PanelAdminComponent } from './panel-admin/panel-admin.component';
+import { roleGuard } from './service/role.guard';
 
 export const routes: Routes = [
-  /*{
-    path: '',
-    redirectTo: 'login',
-    pathMatch: 'full',
-  },*/
   {
     path: '',
-    component: HomeComponent,
+    redirectTo: 'auth',
+    pathMatch: 'full',
   },
   {
-    path: 'login',
+    path: 'auth',
     component: AuthComponent,
   },
   {
     path: 'home',
     component: HomeComponent,
-    /*canActivate: [authGuard],*/
   },
   {
     path: 'annonces',
     component: AnnonceComponent,
-    /*canActivate: [authGuard],*/
   },
   {
     path: 'dashboard',
     component: DashboardComponent,
-    /*canActivate: [authGuard],*/
+    canActivate: [roleGuard],
+    data: { expectedRole: 'user' },
+  },
+  {
+    path: 'panel',
+    component: PanelAdminComponent,
+    canActivate: [roleGuard],
+    data: { expectedRole: 'admin' },
   },
   {
     path: 'profil',
     component: ProfilComponent,
-    /*canActivate: [authGuard],*/
+    canActivate: [roleGuard],
+    data: { expectedRole: 'user' },
   },
 ];

@@ -1,56 +1,76 @@
-import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { AuthService } from '../service/auth.service';
+import { LoginData, RegisterData } from '../models/user.model';
 
 @Component({
   selector: 'app-auth',
   standalone: true,
-  imports: [FormsModule, HttpClientModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './auth.component.html',
-  styleUrls: ['./auth.component.css']
+  styleUrls: ['./auth.component.css'],
 })
-
 export class AuthComponent {
 
-  loginObj: Login;
-  msg: string = "";
+  loginData: LoginData = { email: '', password: '' };
+  registerData: RegisterData = {
+    email: '',
+    password: '',
+    first_name: '',
+    last_name: '',
+    city: '',
+  };
+  confirmPassword = '';
 
-  constructor(private http: HttpClient,private router: Router) {
-    this.loginObj = new Login();
+  feedbackMsg = '';
+  isError = false;
+
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+  ) {}
+
+  onLogin(): void {
+    console.log(this.loginData);
+    this.authService.login(this.loginData).subscribe({
+      next: (res) => {
+        //console.log(res.status);
+        if (res.status === 'ok') {
+          console.log("ok");
+          this.showMessage('Connexion réussie !', false);
+          setTimeout(() => this.router.navigate(['/home']), 1500);
+        } else {
+          this.showMessage(res.message, true);
+        }
+      },
+      error: () => this.showMessage('Erreur de connexion au serveur.', true),
+    });
   }
 
-  onLogin() {
-    this.http.post('https://gsbrapport.allusse-tom.tech/gsbapi/?connexion', this.loginObj).subscribe((res:any)=>{
-      if(res != null && res !== undefined && res.length !== 0) {
-        this.msg = "Login Success";
-        localStorage.setItem('angular17token', res[0]['hash']);
-        setTimeout(
-          () => {
-            this.msg = "";
-            this.router.navigate(['home']);
-          }, 1000
-        );
+  onRegister(): void {
+    if (this.registerData.password !== this.confirmPassword) {
+      this.showMessage('Les mots de passe ne correspondent pas.', true);
+      return;
+    }
 
-
-      } else {
-        this.msg = "Connexion impossible ! Identifiant ou Password incorrect !";
-        setTimeout(
-          () => {
-            this.msg = "";
-          }, 2000
-        );
-      }
-    })
+    this.authService.register(this.registerData).subscribe({
+      next: (res) => {
+        if (res.status === 'ok') {
+          this.showMessage('Compte créé ! Connexion en cours...', false);
+          setTimeout(() => this.router.navigate(['/home']), 1500);
+        } else {
+          this.showMessage(res.message, true);
+        }
+      },
+      error: () => this.showMessage("Erreur lors de l'inscription.", true),
+    });
   }
-}
 
-export class Login {
-  login: string;
-  password: string;
-  constructor() {
-    this.login = '';
-    this.password = '';
+  private showMessage(text: string, error: boolean): void {
+    this.feedbackMsg = text;
+    this.isError = error;
+    setTimeout(() => (this.feedbackMsg = ''), 3000);
   }
 }

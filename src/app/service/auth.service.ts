@@ -1,27 +1,52 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable, tap } from 'rxjs';
+import { AuthResponse, LoginData, RegisterData } from '../models/user.model';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
-  providedIn: 'root', // ✅ Disponible dans toute l'app, sans le déclarer dans app.config.ts
+  providedIn: 'root',
 })
 export class AuthService {
-  isAuth: boolean = false;
+  private API_URL = '/api/user';
+  private platformId = inject(PLATFORM_ID);
 
-  signIn(): Promise<boolean> {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        this.isAuth = true;
-        localStorage.setItem('angular17token', crypto.randomUUID());
-        resolve(true);
-      }, 2000);
-    });
+  constructor(private http: HttpClient) {}
+
+  private isBrowser(): boolean {
+    return isPlatformBrowser(this.platformId);
   }
 
-  signOut(): void {
-    this.isAuth = false;
-    localStorage.removeItem('angular17token');
+  login(credentials: LoginData): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(`${this.API_URL}/login`, credentials).pipe(
+      tap((res) => {
+        if (res.status === 'ok' && res.result?.token && this.isBrowser()) {
+          localStorage.setItem('auth_token', res.result.token);
+          localStorage.setItem('user', JSON.stringify(res.result));
+        }
+      }),
+    );
   }
 
-  getAuthStatus(): string {
-    return this.isAuth ? 'Déconnexion' : 'Connexion';
+  register(data: RegisterData): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(`${this.API_URL}/sign`, data).pipe(
+      tap((res) => {
+        if (res.status === 'ok' && res.result?.token && this.isBrowser()) {
+          localStorage.setItem('auth_token', res.result.token);
+          localStorage.setItem('user', JSON.stringify(res.result));
+        }
+      }),
+    );
+  }
+
+  logout(): void {
+    if (this.isBrowser()) {
+      localStorage.removeItem('auth_token');
+    }
+  }
+
+  isLoggedIn(): boolean {
+    if (!this.isBrowser()) return false;
+    return !!localStorage.getItem('auth_token');
   }
 }

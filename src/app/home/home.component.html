@@ -9,9 +9,18 @@
       Bricolage, jardinage, soutien scolaire — tout près de chez vous.
     </p>
     <div class="buttons">
-      <button class="btn primary">Publier une annonce</button>
-      <button class="btn secondary">Parcourir les services</button>
+      <button class="btn primary" *ngIf="isLogged" (click)="ouvrirFormAnnonce()">Publier une annonce</button>
+      <button routerLink="/annonces" class="btn secondary">Parcourir les services</button>
     </div>
+
+    @if (canvasVisible) {
+      <div class="canvas-backdrop" (click)="fermerFormAnnonce()">
+        <div class="canvas-panel" (click)="$event.stopPropagation()">
+          <button class="btn-close" (click)="fermerFormAnnonce()">✕</button>
+          <app-form-annonce class="canvas-form" (click)="$event.stopPropagation()" />
+        </div>
+      </div>
+    }
   </div>
 
   <div class="hero-image">
@@ -23,15 +32,15 @@
 
 <section class="stats">
   <div class="stat">
-    <h2>{{ stats.membres }}</h2>
+    <h2>{{ (countMemberActifs$ | async) ?? 0 }}</h2>
     <p>Membres actifs</p>
   </div>
   <div class="stat">
-    <h2>{{ stats.annonces }}</h2>
+    <h2>{{ (countAnnounces$ | async) ?? 0 }}</h2>
     <p>Annonces</p>
   </div>
   <div class="stat">
-    <h2>{{ stats.termines }}</h2>
+    <h2>{{ (countAnnouncesTerminated$ | async) ?? 0 }}</h2>
     <p>Terminés</p>
   </div>
 </section>
@@ -39,16 +48,14 @@
 <hr>
 
 <section class="categories">
-  <h2>Catégorie en tendance</h2>
+  <h2>Catégories en tendance</h2>
   <div class="category-grid">
-    @for (cat of categories; track cat.nom) {
+    @for (cat of (categories$ | async); track cat.id) {
       <div class="category-card">
-        <span>{{ cat.nom }}</span>
+        <span>{{ cat.name }}</span>
       </div>
+    } @empty {
+      <div class="loader">Chargement des catégories...</div>
     }
   </div>
 </section>
-
-@if (!stats || categories.length === 0) {
-  <div class="loader">Chargement...</div>
-}

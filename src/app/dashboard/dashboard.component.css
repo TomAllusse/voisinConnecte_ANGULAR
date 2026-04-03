@@ -2,7 +2,7 @@
   display: block;
   background-color: #101728;
   min-height: 100vh;
-  padding: 40px 80px;
+  padding: 0 80px 40px 80px;
 }
 
 .dashboard {
@@ -12,9 +12,34 @@
 
 h1 {
   text-align: center;
-  font-size: 4rem;
+  font-size: 2.5rem;
   margin-bottom: 30px;
 }
+
+/* BOUTONS */
+.btn-container {
+  display: flex;
+  justify-content: center;
+  gap: 150px;
+  margin: 75px;
+}
+
+.btn {
+  padding: 12px 25px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.3s;
+  background: linear-gradient(90deg, #9340ff, #ff3c5f);
+  border: 2px solid #7b2ff7;
+  color: #fff;
+  letter-spacing: 2.5px;
+}
+
+.btn:hover {
+  opacity: 0.5;
+}
+
 
 .colonnes {
   display: flex;
@@ -28,16 +53,11 @@ h1 {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  width: 500px;
-/*
-  border-width: 0 2px 0 2px;
-  padding: 20px;
-  border-style: solid;
-  border-color: #fff;*/
+  width: 400px;
 }
 
 .titre-colonne {
-  font-size: 2.5rem;
+  font-size: 1.75rem;
   font-weight: bold;
   margin-bottom: 8px;
   text-align: center;
@@ -64,7 +84,7 @@ h1 {
 }
 
 .carte-header .badge {
-  width: 200px;
+  width: 150px;
   height: 35px;
   margin: 5px;
   background: limegreen;
@@ -78,7 +98,7 @@ h1 {
 .categorie{
   width: 100%;
   color: #0f1819;
-  font-size: 1.15rem;
+  font-size: 0.9rem;
   font-weight: bold;
 }
 
@@ -88,14 +108,14 @@ h1 {
 }
 
 .carte h3 {
-  font-size: 1.75rem;
+  font-size: 1.25rem;
   margin: 15px auto;
   text-align: center;
 }
 
 .carte p {
   color: #ddd;
-  font-size: 1rem;
+  font-size: 0.95rem;
   text-align: justify;
   margin: 25px;
   height: 150px;
@@ -109,13 +129,13 @@ h1 {
 
 .btn-add {
   margin: 0 auto;
-  width: 100px;
-  height: 100px;
+  width: 75px;
+  height: 75px;
   border-radius: 50%;
   border: 3px solid #555;
   background: transparent;
   color: white;
-  font-size: 4rem;
+  font-size: 3rem;
   cursor: pointer;
   transition: border-color 0.2s;
 }

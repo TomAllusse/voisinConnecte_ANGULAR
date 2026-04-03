@@ -1,0 +1,105 @@
+<div class="overlay">
+  <div class="canvas">
+
+    <!-- Header -->
+    <div class="canvas-header">
+      <p class="canvas-title">Répondre à l'annonce</p>
+    </div>
+
+    <!-- Formulaire -->
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+      <div class="canvas-body">
+
+        <!-- Titre -->
+        <div class="canvas-field">
+          <label class="canvas-label">Titre <span class="canvas-required">*</span></label>
+          <input
+            class="canvas-input"
+            [class.invalid]="isFieldInvalid('title')"
+            formControlName="title"
+            type="text"
+            placeholder="Ex : Aide au jardinage…"
+          />
+          <span class="canvas-error" *ngIf="isFieldInvalid('title')">Titre obligatoire.</span>
+        </div>
+
+        <!-- Catégorie -->
+        <div class="canvas-field">
+          <label class="canvas-label">Catégorie <span class="canvas-required">*</span></label>
+          <select
+            class="canvas-select"
+            [class.invalid]="isFieldInvalid('category_id')"
+            formControlName="category_id"
+          >
+            <option [ngValue]="null" disabled>Choisir…</option>
+            <option *ngFor="let cat of categories" [ngValue]="cat.id">{{ cat.label }}</option>
+          </select>
+          <span class="canvas-error" *ngIf="isFieldInvalid('category_id')">Catégorie obligatoire.</span>
+        </div>
+
+        <!-- Description -->
+        <div class="canvas-field">
+          <label class="canvas-label">Description <span class="canvas-required">*</span></label>
+          <textarea
+            class="canvas-textarea"
+            [class.invalid]="isFieldInvalid('description')"
+            formControlName="description"
+            placeholder="Décrivez votre offre…"
+            rows="4"
+            maxlength="200"
+          ></textarea>
+          <span class="canvas-caractere" [ngClass]="{'text-danger': descLength >= 190}">{{ descLength }} / 200</span>
+          <span class="canvas-error" *ngIf="isFieldInvalid('description')">Description obligatoire.</span>
+        </div>
+
+        <!-- Service rémunéré -->
+        <div class="canvas-field">
+          <label class="canvas-label">Service rémunéré ?</label>
+          <label class="canvas-switch">
+            <input type="checkbox" formControlName="is_paid" />
+            <span class="canvas-slider"></span>
+          </label>
+        </div>
+
+        <!-- Prix + Unité -->
+        <div class="canvas-price-block" [class.visible]="isPaid">
+          <div class="canvas-field">
+            <label class="canvas-label">Prix (€) <span class="canvas-required">*</span></label>
+            <input
+              class="canvas-input"
+              [class.invalid]="isFieldInvalid('price')"
+              formControlName="price"
+              type="number"
+              min="0"
+              step="0.01"
+              placeholder="0.00"
+            />
+            <span class="canvas-error" *ngIf="isFieldInvalid('price')">Prix requis.</span>
+          </div>
+          <div class="canvas-field">
+            <label class="canvas-label">Unité <span class="canvas-required">*</span></label>
+            <select
+              class="canvas-select"
+              [class.invalid]="isFieldInvalid('price_unit')"
+              formControlName="price_unit"
+            >
+              <option [ngValue]="null" disabled>Sélectionner…</option>
+              <option *ngFor="let u of priceUnits" [ngValue]="u">{{ u }}</option>
+            </select>
+            <span class="canvas-error" *ngIf="isFieldInvalid('price_unit')">Unité requise.</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Footer -->
+      <div class="canvas-footer">
+        <button type="button" class="canvas-btn-cancel" (click)="onReset()">Annuler</button>
+        <button type="submit" class="canvas-btn-submit" [disabled]="isSubmitting">
+          {{ isSubmitting ? 'Publication…' : 'Publier →' }}
+        </button>
+      </div>
+
+    </form>
+  </div>
+</div>

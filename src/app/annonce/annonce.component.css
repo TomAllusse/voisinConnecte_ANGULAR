@@ -2,7 +2,7 @@
   display: block;
   background-color: #101728;
   min-height: 100vh;
-  padding: 40px 80px;
+  padding: 0 80px 40px 80px;
 }
 
 /* FILTER */
@@ -12,24 +12,76 @@
   text-align: center;
 }
 
+.filter-group{
+  display: grid;
+  grid-template-columns: repeat(5, 2fr);
+  justify-content: center;
+  align-content: center;
+  gap: 25px;
+  justify-items: stretch;
+}
+
 .btn-filter h1{
-  font-size: 4rem;
+  font-size: 2.5rem;
   margin: 0 auto 50px auto;
   text-align: center;
 }
 
 .btn-filter div{
-  display: flex;
   width: 100%;
   justify-content: center;
-  gap: 100px;
+}
+
+/* CANVAS */
+.canvas-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.canvas-panel {
+  position: relative;
+  width: 70vw;
+  height: 90vh;
+  overflow-y: auto;
+  border-radius: 20px;
+}
+
+.btn-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 2.5rem;
+  z-index: 10;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: #8892a4;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.btn-close:hover {
+  background: rgba(255,255,255,0.15);
+  color: #fff;
 }
 
 /* GRID */
 .grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 25px;
+  gap: 50px;
 }
 
 /* CARD */
@@ -62,8 +114,19 @@
 .badge span {
   width: 100%;
   color: #0f1819;
-  font-size: 1.15rem;
+  font-size: 0.9rem;
   font-weight: bold;
+}
+
+.user-info span, .tarif {
+  font-size: 0.9rem;
+}
+
+.empty-container{
+  display: block;
+  margin: 150px auto;
+  width: 100%;
+  text-align: center;
 }
 
 /* TARIF */
@@ -78,16 +141,16 @@
 
 /* TEXTE */
 .card h3 {
-  font-size: 2.25rem;
+  font-size: 1.75rem;
   margin: 15px auto;
   text-align: center;
 }
 
 .card p {
   color: #ddd;
-  font-size: 1.25rem;
+  font-size: 1rem;
   text-align: justify;
-  margin: 50px;
+  margin: 25px;
   height: 150px;
   font-style: italic;
 }

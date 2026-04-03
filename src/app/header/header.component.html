@@ -1,14 +1,24 @@
 <header>
   <nav class="navbar navbar-expand-sm bg-light navbar-light">
-    <div class="container">
+    <div class="nav-container">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a routerLink="/home">Accueil</a>
+          <img id="icon" src="/svg/icon.svg" alt="icon à côté du nom de l'entreprise">
+          <a routerLink="/home">Voisins Connectés</a>
         </li>
       </ul>
-      <ul class="navbar-nav login">
-        <li>
-          <button class="btn-out" type="button" (click)="onAuthClick()">{{ authLabel }}</button>
+      <ul class="navbar">
+        <li class="nav-item dropdown">
+          <img id="menu-icon" src="/svg/menu.svg" alt="icon menu">
+          <ul class="dropdown-menu">
+            <li class="dropdown-item"><a routerLink="/home">Accueil</a></li>
+            <li class="dropdown-item" ><a routerLink="/annonces">Annonces</a></li>
+            <li class="dropdown-item" *ngIf="isLogged"><a routerLink="/dashboard">Dashboard</a></li>
+            <li class="dropdown-item" *ngIf="isLogged"><a routerLink="/panel">Panel</a></li>
+            <li class="dropdown-item" *ngIf="isLogged"><a routerLink="/profil">Profil</a></li>
+            <li class="dropdown-item" *ngIf="!isLogged"><a routerLink="/auth">Connexion / Inscription</a></li>
+            <li class="dropdown-item" *ngIf="isLogged"><a (click)="onLogout()">Déconnexion</a></li>
+          </ul>
         </li>
       </ul>
     </div>

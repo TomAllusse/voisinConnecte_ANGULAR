@@ -1,4 +1,6 @@
 export interface Categorie {
   id: number;
-  nom: string;
+  name: string;
+  color_hex: string;
+  icon: string;
 }

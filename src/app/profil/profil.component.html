@@ -3,9 +3,9 @@
   <!-- CARTE GAUCHE -->
   <div class="carte-profil">
     <div class="avatar">
-      <img src="https://api.dicebear.com/7.x/adventurer/svg?seed=Adam" alt="Avatar" />
+      <img [src]="profil.avatar_path || 'https://api.dicebear.com/7.x/adventurer/svg?seed=Lucky'" alt="Avatar" />
     </div>
-    <h3>{{ nomAffiche }}</h3>
+    <h3>{{ nomAffiche || 'Chargement...' }}</h3>
     <p class="lieu">{{ lieuHabitation }}</p>
 
     <div class="stats">
@@ -47,7 +47,7 @@
 
     <div class="form-group">
       <label>Description</label>
-      <textarea [(ngModel)]="profil.description" placeholder="Description" rows="4"></textarea>
+      <textarea [(ngModel)]="profil.bio" placeholder="Description" rows="4"></textarea>
     </div>
 
     <div class="form-group">

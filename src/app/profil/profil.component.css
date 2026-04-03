@@ -14,7 +14,7 @@
 
 /* CARTE GAUCHE */
 .carte-profil {
-  background-color: #6a0dad;
+  background: linear-gradient(180deg, rgb(147, 64, 255, 0.5), rgb(37, 117, 252, 0.4));
   border-radius: 16px;
   padding: 24px 16px;
   display: flex;
@@ -57,8 +57,11 @@
 }
 
 .stat {
-  background-color: #5a0b9d;
+  background: rgb(160, 32, 240, 0.6);
   border-radius: 10px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(255, 255, 255, 0.75);
   padding: 10px;
   text-align: center;
   display: flex;
@@ -78,7 +81,7 @@
 
 /* FORMULAIRE DROITE */
 .carte-form {
-  background-color: #6a0dad;
+  background: linear-gradient(180deg, rgb(147, 64, 255, 0.5), rgb(37, 117, 252, 0.4));
   border-radius: 16px;
   padding: 24px;
   flex: 1;

@@ -1,26 +1,29 @@
 <div class="dashboard">
   <h1>Tableau de bord</h1>
+  <div class="btn-container">
+    <button class="btn">Mes annonces</button>
+    <button class="btn">Annonces pris</button>
+  </div>
 
   <div class="colonnes">
 
     <!-- EN ATTENTE -->
     <div class="colonne">
       <h2 class="titre-colonne attente">En attente</h2>
-
-      @for (annonce of annonceAttente; track annonce.id) {
-        <div class="carte">
-          <div class="carte-header">
-            <span class="badge categorie" [style.background-color]="annonce.couleurCategorie">{{ annonce.categorie }}</span>
-            <span class="tarif">{{ annonce.tarif ? annonce.tarif + '€' : 'Gratuit' }}</span>
+      @if (annoncesAttente$ | async; as annonceAttente) {
+        @for (annonce of annonceAttente; track annonce.id) {
+          <div class="carte">
+            <div class="carte-header">
+              <span class="badge categorie" [style.background-color]="annonce.id_category.color_hex">{{ annonce.id_category.name }}</span>
+              <span class="tarif">{{ annonce.price ? annonce.price + '€' : 'Gratuit' }}</span>
+            </div>
+            <h3>{{ annonce.title }}</h3>
+            <p>{{ annonce.description }}</p>
+            <span class="auteur">{{ formatUserName(annonce.id_user) }}</span>
           </div>
-          <h3>{{ annonce.titre }}</h3>
-          <p>{{ annonce.description }}</p>
-          <span class="auteur">{{ annonce.auteur }}</span>
-        </div>
-      }
-
-      @if (annonceAttente.length === 0) {
-        <p class="vide">Aucune annonce</p>
+        }
+      } @else {
+        <p class="vide" [ngStyle]="{'text-align': 'center'}">Aucune annonce</p>
       }
 
       <button class="btn-add">+</button>
@@ -29,21 +32,20 @@
     <!-- EN COURS -->
     <div class="colonne">
       <h2 class="titre-colonne en-cours">En cours</h2>
-
-      @for (annonce of annonceEnCours; track annonce.id) {
-        <div class="carte">
-          <div class="carte-header">
-            <span class="badge categorie" [style.background-color]="annonce.couleurCategorie">{{ annonce.categorie }}</span>
-            <span class="tarif">{{ annonce.tarif ? annonce.tarif + '€' : 'Gratuit' }}</span>
+      @if (annoncesEnCours$ | async; as annonceEnCours) {
+        @for (annonce of annonceEnCours; track annonce.id) {
+          <div class="carte">
+            <div class="carte-header">
+              <span class="badge categorie" [style.background-color]="annonce.id_category.color_hex">{{ annonce.id_category.name }}</span>
+              <span class="tarif">{{ annonce.price ? annonce.price + '€' : 'Gratuit' }}</span>
+            </div>
+            <h3>{{ annonce.title }}</h3>
+            <p>{{ annonce.description }}</p>
+            <span class="auteur">{{ formatUserName(annonce.id_user) }}</span>
           </div>
-          <h3>{{ annonce.titre }}</h3>
-          <p>{{ annonce.description }}</p>
-          <span class="auteur">{{ annonce.auteur }}</span>
-        </div>
-      }
-
-      @if (annonceEnCours.length === 0) {
-        <p class="vide">Aucune annonce</p>
+        }
+      } @else {
+        <p class="vide" [ngStyle]="{'text-align': 'center'}">Aucune annonce</p>
       }
 
       <button class="btn-add">+</button>
@@ -53,20 +55,20 @@
     <div class="colonne">
       <h2 class="titre-colonne termine">Terminés</h2>
 
-      @for (annonce of annonceTermine; track annonce.id) {
-        <div class="carte">
-          <div class="carte-header">
-            <span class="badge categorie" [style.background-color]="annonce.couleurCategorie">{{ annonce.categorie }}</span>
-            <span class="tarif">{{ annonce.tarif ? annonce.tarif + '€' : 'Gratuit' }}</span>
+      @if (annoncesTerminees$ | async; as annonceTermine) {
+        @for (annonce of annonceTermine; track annonce.id) {
+          <div class="carte">
+            <div class="carte-header">
+              <span class="badge categorie" [style.background-color]="annonce.id_category.color_hex">{{ annonce.id_category.name }}</span>
+              <span class="tarif">{{ annonce.price ? annonce.price + '€' : 'Gratuit' }}</span>
+            </div>
+            <h3>{{ annonce.title }}</h3>
+            <p>{{ annonce.description }}</p>
+            <span class="auteur">{{ formatUserName(annonce.id_user) }}</span>
           </div>
-          <h3>{{ annonce.titre }}</h3>
-          <p>{{ annonce.description }}</p>
-          <span class="auteur">{{ annonce.auteur }}</span>
-        </div>
-      }
-
-      @if (annonceTermine.length === 0) {
-        <p class="vide">Aucune annonce</p>
+        }
+      } @else {
+        <p class="vide" [ngStyle]="{'text-align': 'center'}">Aucune annonce</p>
       }
 
       <button class="btn-add">+</button>
